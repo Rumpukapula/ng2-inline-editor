@@ -139,10 +139,10 @@ a.editable-empty:focus {
 }
 .inlineEditForm input, select{
     padding: 4px 4px;
- width: 100%;
- overflow: hidden;
- text-overflow: ellipsis;
- display: inline;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline;
 }
 .inline-editor-button-group{
     display:block;
