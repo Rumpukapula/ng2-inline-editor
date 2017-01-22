@@ -138,11 +138,14 @@ a.editable-empty:focus {
  display: inline-block;
 }
 .inlineEditForm input, select{
- width: auto;
+    padding: 4px 4px;
+ width: 100%;
+ overflow: hidden;
+ text-overflow: ellipsis;
  display: inline;
 }
 .inline-editor-button-group{
-    display:inline-block;
+    display:block;
 }
 .editInvalid{
  color: #a94442;
