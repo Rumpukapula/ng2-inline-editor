@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var forms_1 = require('@angular/forms');
+var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
 exports.CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
     useExisting: core_1.forwardRef(function () { return InlineEditorComponent; }),
@@ -30,7 +30,7 @@ var inputConfig = {
     fnErrorPattern: function (x) { alert('Error: Pattern!'); }
 };
 var INLINE_EDITOR_TEMPLATE = "\n<div id=\"inlineEditWrapper\">\n    <div [ngSwitch]=\"type\">\n       <template [ngSwitchCase]=\"'password'\">\n          <a [ngClass]=\"{'editable-empty': isEmpty }\" (click)=\"edit(value)\" [hidden]=\"editing\"> ****** </a>\n        </template>\n        <template [ngSwitchCase]=\"'select'\">\n          <a [ngClass]=\"{'editable-empty': isEmpty }\"\n            (click)=\"edit(value)\" [hidden]=\"editing\"> {{optionSelected()}} </a>\n        </template>\n        <template ngSwitchDefault>\n            <a [ngClass]=\"{'editable-empty': isEmpty }\"  (click)=\"edit(value)\" [hidden]=\"editing\">{{ showText() }}</a>\n        </template>\n    </div>\n\n    <!-- inline edit form -->\n    <div class=\"inlineEditForm form-inline\" [hidden]=\"!editing\">\n        <div class=\"form-group\">\n\n            <!-- inline edit control  -->\n            <p [ngSwitch]=\"type\">\n                <template [ngSwitchCase]=\"'text'\">\n                    <input #inlineEditControl class=\"form-control\" [(ngModel)]=\"value\" [required]=\"required\"\n                      [disabled]=\"disabled\" [name]=\"name\" [placeholder]=\"placeholder\" [size]=\"size\"/>\n                </template>\n                <template [ngSwitchCase]=\"'textarea'\">\n                    <textarea [rows]=\"rows\" [cols]=\"cols\" #inlineEditControl class=\"form-control\" [(ngModel)]=\"value\"\n                      [required]=\"required\" [placeholder]=\"placeholder\" [disabled]=\"disabled\" ></textarea>\n                </template>\n                <template [ngSwitchCase]=\"'range'\">\n                    <input #inlineEditControl class=\"form-control\" [(ngModel)]=\"value\" [required]=\"required\"\n                      type=\"range\" [disabled]=\"disabled\" [max]=\"max\" [min]=\"min\" [name]=\"name\"/>\n                </template>\n                <template [ngSwitchCase]=\"'select'\">\n                    <select #inlineEditControl class=\"form-control\" [(ngModel)]=\"value\">\n                    <template ngFor let-item [ngForOf]=\"options.data\">\n\n                        <optgroup *ngIf=\"item.children\" label=\"{{item[options.text]}}\">\n                            <option *ngFor=\"let child of item.children\" value=\"{{child[options.value]}}\">\n                                {{child[options.text]}}\n                            </option>\n                        </optgroup>\n                     <option *ngIf=\"!item.children\" value=\"{{item[options.value]}}\">{{item[options.text]}}</option>\n                    </template>\n                    </select>\n                </template>\n                <template ngSwitchDefault>\n                    <input [type]=\"type\"  #inlineEditControl class=\"form-control\" [(ngModel)]=\"value\"\n                      [required]=\"required\" [placeholder]=\"placeholder\" [disabled]=\"disabled\"  [name]=\"name\"\n                      [size]=\"size\"/>\n                </template>\n                         \n                <span class=\"inline-editor-button-group\">\n                    <button id=\"inline-editor-button-save\" class=\"btn btn-xs btn-primary\"\n                          (click)=\"onSubmit(value)\"><span class=\"fa fa-check\"></span></button>\n                    <button class=\"btn btn-xs btn-danger\" (click)=\"cancel(value)\"><span class=\"fa fa-remove\"></span> </button>\n                  </span>\n            </p>\n\n   \n\n        </div>\n    </div>\n</div>";
-var INLINE_EDITOR_CSS = "\na {\n text-decoration: none;\n color: #428bca;\n border-bottom: dashed 1px #428bca;\n cursor: pointer;\n line-height: 2;\n margin-right: 5px;\n margin-left: 5px;\n}\n\n/* editable-empty */\n.editable-empty,\n.editable-empty:hover,\n.editable-empty:focus,\na.editable-empty,\na.editable-empty:hover,\na.editable-empty:focus {\n  font-style: italic;\n  color: #DD1144;\n  text-decoration: none;\n}\n\n.inlineEditForm{\n display: inline-block;\n white-space: nowrap;\n margin: 0;\n}\n#inlineEditWrapper{\n display: inline-block;\n}\n.inlineEditForm input, select{\n width: auto;\n display: inline;\n}\n.inline-editor-button-group{\n    display:inline-block;\n}\n.editInvalid{\n color: #a94442;\n margin-bottom: 0;\n}\n.error{\n border-color: #a94442;\n}\n[hidden] {\n display: none;\n}";
+var INLINE_EDITOR_CSS = "\na {\n text-decoration: none;\n color: #428bca;\n border-bottom: dashed 1px #428bca;\n cursor: pointer;\n line-height: 2;\n margin-right: 5px;\n margin-left: 5px;\n}\n\n/* editable-empty */\n.editable-empty,\n.editable-empty:hover,\n.editable-empty:focus,\na.editable-empty,\na.editable-empty:hover,\na.editable-empty:focus {\n  font-style: italic;\n  color: #DD1144;\n  text-decoration: none;\n}\n\n.inlineEditForm{\n display: inline-block;\n white-space: nowrap;\n margin: 0;\n}\n#inlineEditWrapper{\n display: inline-block;\n}\n.inlineEditForm input, select{\n    padding: 4px 4px;\n    width: 100%;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    display: inline;\n}\n.inline-editor-button-group{\n    display:block;\n}\n.editInvalid{\n color: #a94442;\n margin-bottom: 0;\n}\n.error{\n border-color: #a94442;\n}\n[hidden] {\n display: none;\n}";
 var NUMERIC_TYPES = ['range', 'number'];
 var InlineEditorComponent = (function () {
     function InlineEditorComponent(element, _renderer) {
@@ -167,89 +167,89 @@ var InlineEditorComponent = (function () {
         }
         return this.empty;
     };
-    __decorate([
-        core_1.ViewChild('inlineEditControl'), 
-        __metadata('design:type', Object)
-    ], InlineEditorComponent.prototype, "inlineEditControl", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], InlineEditorComponent.prototype, "onSave", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], InlineEditorComponent.prototype, "onEdit", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], InlineEditorComponent.prototype, "onCancel", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], InlineEditorComponent.prototype, "empty", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], InlineEditorComponent.prototype, "type", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], InlineEditorComponent.prototype, "disabled", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], InlineEditorComponent.prototype, "placeholder", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], InlineEditorComponent.prototype, "name", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], InlineEditorComponent.prototype, "size", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], InlineEditorComponent.prototype, "min", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], InlineEditorComponent.prototype, "max", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], InlineEditorComponent.prototype, "fnErrorLength", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], InlineEditorComponent.prototype, "pattern", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], InlineEditorComponent.prototype, "fnErrorPattern", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], InlineEditorComponent.prototype, "cols", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], InlineEditorComponent.prototype, "rows", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object), 
-        __metadata('design:paramtypes', [Object])
-    ], InlineEditorComponent.prototype, "options", null);
-    InlineEditorComponent = __decorate([
-        core_1.Component({
-            selector: 'inline-editor',
-            template: INLINE_EDITOR_TEMPLATE,
-            styles: [INLINE_EDITOR_CSS],
-            providers: [exports.CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
-        }), 
-        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
-    ], InlineEditorComponent);
     return InlineEditorComponent;
 }());
+__decorate([
+    core_1.ViewChild('inlineEditControl'),
+    __metadata("design:type", Object)
+], InlineEditorComponent.prototype, "inlineEditControl", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], InlineEditorComponent.prototype, "onSave", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], InlineEditorComponent.prototype, "onEdit", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], InlineEditorComponent.prototype, "onCancel", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], InlineEditorComponent.prototype, "empty", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], InlineEditorComponent.prototype, "type", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], InlineEditorComponent.prototype, "disabled", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], InlineEditorComponent.prototype, "placeholder", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], InlineEditorComponent.prototype, "name", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], InlineEditorComponent.prototype, "size", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], InlineEditorComponent.prototype, "min", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], InlineEditorComponent.prototype, "max", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], InlineEditorComponent.prototype, "fnErrorLength", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], InlineEditorComponent.prototype, "pattern", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], InlineEditorComponent.prototype, "fnErrorPattern", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], InlineEditorComponent.prototype, "cols", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], InlineEditorComponent.prototype, "rows", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [Object])
+], InlineEditorComponent.prototype, "options", null);
+InlineEditorComponent = __decorate([
+    core_1.Component({
+        selector: 'inline-editor',
+        template: INLINE_EDITOR_TEMPLATE,
+        styles: [INLINE_EDITOR_CSS],
+        providers: [exports.CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
+    }),
+    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
+], InlineEditorComponent);
 exports.InlineEditorComponent = InlineEditorComponent;
 //# sourceMappingURL=inline-editor.component.js.map
